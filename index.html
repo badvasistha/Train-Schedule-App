@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Example of Time Telling</title>
+
+    <!-- Added Moment JS -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-database.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/javascript/logic.js"></script>
+
+
+</head>
+
+<body>
+
+    
+
+    <div class="container">
+        <h1>Click the filter icon <small>(<i class="glyphicon glyphicon-filter"></i>)</small></h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Developers</h3>
+                        <div class="pull-right">
+                            <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                                data-container="body">
+                                <i class="glyphicon glyphicon-filter"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <input type="text" class="form-control" id="dev-table-filter" data-action="filter"
+                            data-filters="#dev-table" placeholder="Filter Developers" />
+                    </div>
+                    <table class="table table-hover" id="dev-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Kilgore</td>
+                                <td>Trout</td>
+                                <td>kilgore</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Bob</td>
+                                <td>Loblaw</td>
+                                <td>boblahblah</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Holden</td>
+                                <td>Caulfield</td>
+                                <td>penceyreject</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Tasks</h3>
+                        <div class="pull-right">
+                            <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                                data-container="body">
+                                <i class="glyphicon glyphicon-filter"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <input type="text" class="form-control" id="task-table-filter" data-action="filter"
+                            data-filters="#task-table" placeholder="Filter Tasks" />
+                    </div>
+                    <table class="table table-hover" id="task-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Task</th>
+                                <th>Assignee</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Site Wireframes</td>
+                                <td>John Smith</td>
+                                <td>in progress</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Mobile Landing Page</td>
+                                <td>Kilgore Trout</td>
+                                <td>completed</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Add SEO tags</td>
+                                <td>Bob Loblaw</td>
+                                <td>failed qa</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Migrate to Bootstrap 3</td>
+                                <td>Emily Hoenikker</td>
+                                <td>in progress</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Update jQuery library</td>
+                                <td>Holden Caulfield</td>
+                                <td>deployed</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Issues in IE7</td>
+                                <td>Jane Doe</td>
+                                <td>failed qa</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Bugs from Sprint 14</td>
+                                <td>Kilgore Trout</td>
+                                <td>completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div class="mat-div">
+            <label for="train-name" class="mat-label">Train name</label>
+            <input type="text" class="mat-input" id="train-name">
+        </div>
+
+        <div class="mat-div">
+            <label for="first-name" class="mat-label">Destination</label>
+            <input type="text" class="mat-input" id="destination">
+        </div>
+
+        <div class="mat-div">
+            <label for="firstTrainTime" class="mat-label">First Train Time(HH-mm-Military-time</label>
+            <input type="text" class="mat-input" id="FirstTrainTime">
+        </div>
+        <div class="wrap">
+            <div class="mat-div">
+                <label for="frequency" class="mat-label">Frequency (min)</label>
+                <input type="text" class="mat-input" id="frequency">
+            </div>
+            <button>Submit</button>
+        </div>
+        <script>
+            $(".mat-input").focus(function () {
+                $(this).parent().addClass("is-active is-completed");
+            });
+
+            $(".mat-input").focusout(function () {
+                if ($(this).val() === "")
+                    $(this).parent().removeClass("is-completed");
+                $(this).parent().removeClass("is-active");
+            })
+        </script>
+
+        <!-- Script -->
+
+        <script>
+            // Your web app's Firebase configuration
+            var config = {
+                apiKey: "AIzaSyCjK55EBUXFDDrNB_zkrXGm91oAN0JK7hY",
+                authDomain: "train-scheduler-a2b73.firebaseapp.com",
+                databaseURL: "https://train-scheduler-a2b73.firebaseio.com",
+                projectId: "train-scheduler-a2b73",
+                storageBucket: "train-scheduler-a2b73.appspot.com",
+                messagingSenderId: "799504821432",
+                appId: "1:799504821432:web:97b92f6e0c4b673b"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(config);
+            // Assume the following situations.
+            var database = firebase.database();
+
+            // (TEST 1)
+            // First Train of the Day is 3:00 AM
+            // Assume Train comes every 3 minutes.
+            // Assume the current time is 3:16 AM....
+            // What time would the next train be...? (Use your brain first)
+            // It would be 3:18 -- 2 minutes away
+
+            // (TEST 2)
+            // First Train of the Day is 3:00 AM
+            // Assume Train comes every 7 minutes.
+            // Assume the current time is 3:16 AM....
+            // What time would the next train be...? (Use your brain first)
+            // It would be 3:21 -- 5 minutes away
+
+
+            // ==========================================================
+
+            // Solved Mathematically
+            // Test case 1:
+            // 16 - 00 = 16
+            // 16 % 3 = 1 (Modulus is the remainder)
+            // 3 - 1 = 2 minutes away
+            // 2 + 3:16 = 3:18
+
+            // Solved Mathematically
+            // Test case 2:
+            // 16 - 00 = 16
+            // 16 % 7 = 2 (Modulus is the remainder)
+            // 7 - 2 = 5 minutes away
+            // 5 + 3:16 = 3:21
+
+            // Assumptions
+            var tFrequency = 3;
+
+            // Time is 3:30 AM
+            var firstTime = "03:30";
+
+            // First Time (pushed back 1 year to make sure it comes before current time)
+            var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+            console.log(firstTimeConverted);
+
+            // Current Time
+            var currentTime = moment();
+            console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+            // Difference between the times
+            var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+            console.log("DIFFERENCE IN TIME: " + diffTime);
+
+            // Time apart (remainder)
+            var tRemainder = diffTime % tFrequency;
+            console.log(tRemainder);
+
+            // Minute Until Train
+            var tMinutesTillTrain = tFrequency - tRemainder;
+            console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+            // Next Train
+            var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+            console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+        </script>
+
+</body>
+
+</html>
