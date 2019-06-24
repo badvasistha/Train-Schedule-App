@@ -1,0 +1,1 @@
+Train Schedule App helps you to save the schedule of your desired train route anytime and anywhere. The app uses the firebase to store the user inputs and JQuery and Javascript to access the database.
