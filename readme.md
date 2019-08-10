@@ -7,5 +7,5 @@ Bootstrap - Front-end styling
 Moment.js - Time formatting
 JavaScript and JQuery.
 
-https://badvasistha.github.io/Train-Schedule-App/
+https://badvasistha.github.io/Train-Schedule-App/ <br>
 https://badvasistha.github.io/Portfolio/
